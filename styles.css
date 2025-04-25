@@ -1,0 +1,611 @@
+/* custom css reset */
+html, 
+body {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+img,
+picture,
+video,
+svg {
+    display: block;
+    max-width: 100%;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+    overflow-wrap: break-word;
+    margin: 0;
+}
+
+input, button, textarea, select {
+    font: inherit;
+}
+
+/* Header styles */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: #f53832;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+/* Logo styles */
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 50px;
+    margin-right: 10px;
+}
+
+.logo h1 {
+    font-size: 1.5rem;
+    color: #333;
+}
+
+/* Desktop navigation styles */
+
+nav ul li a:hover {
+    background-color: #e9ecef;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+    align-items: center; /* This ensures vertical alignment */
+}
+
+nav ul li {
+    position: relative;
+    margin: 0; /* Remove any default margins */
+    padding: 0; /* Remove any default padding */
+}
+
+nav ul li a, 
+nav ul li p {
+    text-decoration: none;
+    color: #333;
+    font-size: 1rem;
+    padding: 10px 15px;
+    transition: box-shadow 0.3s ease, background-color 0.3s ease;
+    display: block;
+    margin: 0; /* Remove any default margins */
+    line-height: 1.5; /* Consistent line height */
+}
+
+/* Dropdown menu styling - Desktop */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    border-radius: 5px;
+    overflow: hidden;
+    min-width: 200px;
+}
+
+.dropdown-content a {
+    display: block;
+    padding: 10px 15px;
+    color: #333;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.dropdown-content a:hover {
+    background-color: #e9ecef;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Hamburger menu styles - Hidden by default */
+.menu-toggle {
+    display: none;
+    cursor: pointer;
+    padding: 10px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1001;
+}
+
+.hamburger {
+    width: 25px;
+    height: 3px;
+    background-color: #333;
+    margin: 5px 0;
+    transition: all 0.3s ease;
+}
+
+/* Close button styles */
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 1.5rem;
+    color: white;
+    cursor: pointer;
+    display: none;
+    z-index: 1002;
+}
+
+/* Main content styles */
+#welcome-banner {
+    text-align: center;
+    font-size: 2rem;
+    color: #040404;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 2px solid #f53832;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    max-width: 1200px;
+}
+
+/* Team picture section */
+#team\ picture {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#team\ picture img {
+    flex: 0 0 40%;
+    max-width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#team\ picture p {
+    flex: 1;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #333;
+    text-align: justify;
+}
+
+/* Address section */
+#address {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.address-details {
+    padding-top: 60px;
+    flex: 0 0 400px;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #333;
+}
+
+.address-details a {
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.address-details a:hover {
+    color: #0056b3;
+}
+
+.map-box {
+    flex: 1;
+    min-height: 400px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
+}
+
+.map-box iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Contacts section */
+.contacts-container {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.contacts-section {
+    flex: 1;
+    width: 100%;
+}
+
+.contacts-section h2 {
+    font-size: 1.5rem;
+    color: #333;
+    border-bottom: 2px solid #d10000;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.contact-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.contact-card {
+    background-color: #55d1fe;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.contact-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.contact-title {
+    font-size: 0.9rem;
+    color: #090909;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.contact-name {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+.contact-link {
+    display: inline-block;
+    color: #d10000;
+    font-weight: bold;
+    font-size: 0.9rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    border: 1px solid #d10000;
+    border-radius: 4px;
+    margin-top: 5px;
+}
+
+.contact-link:hover {
+    background-color: #d10000;
+    color: white;
+}
+
+/* Fixtures, Results, and League Table sections */
+#Fixtures, #Results, #league-table {
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 100%;
+    overflow-x: auto;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#Fixtures h1, #Results h1, #league-table h1 {
+    font-size: 1.8rem;
+    color: #0c0c0c;
+    margin-bottom: 15px;
+    text-align: center;
+    text-transform: uppercase;
+    border-bottom: 2px solid #f53832;
+    padding-bottom: 10px;
+}
+
+#Fixtures > div, #Results > div, #league-table > div {
+    width: 100%;
+    overflow-x: auto;
+}
+
+/* Sponsors section */
+#sponsers {
+    text-align: center;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 1200px;
+}
+
+#sponsers h1 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #0c0b0b;
+}
+
+.sponser-logos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.sponser-logos img {
+    width: 100px;
+    height: auto;
+    transition: transform 0.3s ease;
+}
+
+.sponser-logos img:hover {
+    transform: scale(1.1);
+}
+
+/* Footer styles */
+footer {
+    padding: 20px;
+    text-align: center;
+    background-color: #f53832;
+    color: #fff;
+}
+
+.social-media {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.social-media a {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+}
+
+.social-icon {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.social-icon:hover {
+    transform: scale(1.2);
+}
+
+/* Mobile styles */
+@media (max-width: 1024px) {
+    #address {
+        flex-direction: column;
+    }
+    
+    .address-details {
+        padding-top: 20px;
+        flex: 1;
+        width: 100%;
+    }
+    
+    .map-box {
+        width: 100%;
+        min-height: 300px;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Show hamburger menu */
+    .menu-toggle {
+        display: block;
+    }
+    
+    /* Hide desktop nav */
+    nav {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 250px;
+        height: 100vh;
+        background-color: #f53832;
+        transition: all 0.3s ease;
+        z-index: 1000;
+        overflow-y: auto;
+        box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+    }
+    
+    nav.active {
+        right: 0;
+    }
+    
+    nav ul {
+        flex-direction: column;
+        padding: 70px 20px 20px;
+    }
+    
+    /* Navigation styles - Desktop */
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+    align-items: center; /* This ensures vertical alignment */
+}
+
+nav ul li {
+    position: relative;
+    margin: 0; /* Remove any default margins */
+    padding: 0; /* Remove any default padding */
+}
+
+nav ul li a, 
+nav ul li p {
+    text-decoration: none;
+    color: #333;
+    font-size: 1rem;
+    padding: 10px 15px;
+    transition: box-shadow 0.3s ease, background-color 0.3s ease;
+    display: block;
+    margin: 0; /* Remove any default margins */
+    line-height: 1.5; /* Consistent line height */
+}
+
+/* Mobile navigation styles */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        gap: 10px; /* Reduced gap for mobile */
+        padding: 20px;
+        align-items: flex-start; /* Align items to the left */
+    }
+
+    nav ul li {
+        width: 100%; /* Full width for mobile items */
+    }
+
+    nav ul li a, 
+    nav ul li p {
+        padding: 12px 15px; /* Consistent padding */
+    }
+
+    .dropdown-content {
+        width: 100%; /* Full width dropdown on mobile */
+    }
+}
+
+/* Fix for dropdown text alignment */
+.dropdown > p {
+    cursor: pointer;
+    margin: 0;
+    position: relative;
+}
+
+/* Ensure all nav items have same styling */
+nav ul > li {
+    display: flex;
+    align-items: center;
+}
+
+    .dropdown-content {
+        position: static;
+        box-shadow: none;
+        display: none;
+        background-color: rgba(0, 0, 0, 0.1);
+        margin-top: 5px;
+        padding-left: 15px;
+    }
+    
+    .dropdown.active .dropdown-content {
+        display: block;
+    }
+    
+    nav.active .close-btn {
+        display: block;
+    }
+    
+    /* Adjust header */
+    header {
+        padding-right: 60px;
+    }
+    
+    .logo {
+        width: calc(100% - 60px);
+    }
+    
+    /* Team picture layout */
+    #team\ picture {
+        flex-direction: column;
+    }
+    
+    #team\ picture img {
+        margin-bottom: 20px;
+        width: 100%;
+    }
+    
+    /* Contact cards */
+    .contact-cards {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Welcome banner */
+    #welcome-banner {
+        font-size: 1.5rem;
+        padding: 15px;
+    }
+    
+    /* Table sections */
+    #Fixtures, #Results, #league-table {
+        padding: 15px;
+    }
+    
+    #Fixtures h1, #Results h1, #league-table h1 {
+        font-size: 1.5rem;
+    }
+    
+    /* Force FA tables to be responsive */
+    #lrep46061238, 
+    #lrep60793009, 
+    #lrep544426236 {
+        width: 100% !important;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .sponser-logos {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .sponser-logos img {
+        margin-bottom: 15px;
+    }
+    
+    #welcome-banner {
+        font-size: 1.3rem;
+    }
+}
