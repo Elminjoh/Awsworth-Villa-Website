@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Login - Awsworth Villa FC</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="shortcut icon" type="image/x-icon" href="Images/awsworth-villa badge">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="Images/awsworth-villa badge" alt="Awsworth Villa FC">
+            <h1>Awsworth Villa FC</h1>
+        </div>
+        <div class="menu-toggle">
+            <div class="hamburger"></div>
+            <div class="hamburger"></div>
+            <div class="hamburger"></div>
+        </div>
+        <nav>
+            <span class="close-btn">×</span>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li class="dropdown">
+                    <p>Teams</p>
+                    <div class="dropdown-content">
+                        <a href="first-team.html">First Team</a>
+                        <a href="reserves.html">Reserve Team</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <p>Matches</p>
+                    <div class="dropdown-content">
+                        <a href="first-team-matches.html">First Team</a>
+                        <a href="reserves-matches.html">Reserve Team</a>
+                    </div>
+                </li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="login.html" class="login-link">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="auth-container">
+        <div class="auth-tabs">
+            <button class="auth-tab active" data-tab="login">Login</button>
+            <button class="auth-tab" data-tab="register">Register</button>
+        </div>
+
+        <div class="auth-form-container">
+            <!-- Login Form -->
+            <form id="login-form" class="auth-form active">
+                <h2>Login to Your Account</h2>
+                <div class="form-group">
+                    <label for="login-email">Email</label>
+                    <input type="email" id="login-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" required>
+                </div>
+                <div class="form-group remember-me">
+                    <input type="checkbox" id="remember-me">
+                    <label for="remember-me">Remember me</label>
+                </div>
+                <button type="submit" class="auth-button">Login</button>
+                <p class="form-message" id="login-message"></p>
+                <p class="forgot-password"><a href="#">Forgot password?</a></p>
+            </form>
+
+            <!-- Register Form -->
+            <form id="register-form" class="auth-form">
+                <h2>Create a New Account</h2>
+                <div class="form-group">
+                    <label for="register-name">Full Name</label>
+                    <input type="text" id="register-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-email">Email</label>
+                    <input type="email" id="register-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-password">Password</label>
+                    <input type="password" id="register-password" required>
+                    <p class="password-hint">Password must be at least 6 characters long</p>
+                </div>
+                <div class="form-group">
+                    <label for="confirm-password">Confirm Password</label>
+                    <input type="password" id="confirm-password" required>
+                </div>
+                <button type="submit" class="auth-button">Register</button>
+                <p class="form-message" id="register-message"></p>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Awsworth Villa FC. All rights reserved.</p>
+        <p>Website designed by Njoh Mtanase</p>
+        <div class="social-media">
+            <a href="https://x.com/awsworthvilla?lang=en-GB" target="_blank" aria-label="Twitter">
+                <img src="Images/X_logo.jpg" alt="Twitter" class="social-icon">
+            </a>
+            <a href="https://instagram.com" target="_blank" aria-label="Instagram">
+                <img src="Images/Instagram_logo_2022" alt="Instagram" class="social-icon">
+            </a>
+            <a href="https://tiktok.com" target="_blank" aria-label="TikTok">
+                <img src="Images/tiktok_logo" alt="TikTok" class="social-icon">
+            </a>
+        </div>
+    </footer>
+
+    <style>
+        /* Additional styles for improved login/registration page */
+        .password-hint {
+            font-size: 0.8rem;
+            color: #666;
+            margin-top: 5px;
+            margin-bottom: 0;
+        }
+        
+        /* Auth notification */
+        .auth-notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 20px;
+            border-radius: 6px;
+            color: white;
+            font-size: 0.9rem;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            animation: slideIn 0.3s forwards;
+        }
+        
+        .auth-notification.success {
+            background-color: #28a745;
+        }
+        
+        .auth-notification.error {
+            background-color: #dc3545;
+        }
+        
+        .auth-notification.info {
+            background-color: #17a2b8;
+        }
+        
+        .auth-notification.fade-out {
+            animation: fadeOut 0.5s forwards;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+    </style>
+
+    <script src="script.js"></script>
+    <script src="auth.js"></script>
+</body>
+</html>

@@ -38,6 +38,8 @@
                     </div>
                 </li>
                 <li><a href="contact.html">Contact</a></li>
+                <li><a href="login.html" class="login-link">Login</a></li>
+
             </ul>
         </nav>
     </header>
@@ -154,18 +156,125 @@
             </div>
         </div>
     </div> <!-- Close #Players -->
-    <footer>
-        <p>&copy; 2023 Awsworth Villa FC. All rights reserved.</p>
-        <p>Website designed by [Your Name]</p>
-        <div class="social-media">
-            <a href="https://x.com/awsworthvilla?lang=en-GB" target="_blank" aria-label="Twitter">
-                <img src="Images/X_logo.jpg" alt="Twitter" class="social-icon">
-            </a>
-            <a href="https://instagram.com" target="_blank" aria-label="Instagram">
-                <img src="Images/Instagram_logo_2022" alt="Instagram" class="social-icon">
-            </a>
+
+<!-- Add this button to both first-team.html and reserves.html after the player sections -->
+<div class="stats-button-container">
+    <button id="show-stats-btn" class="stats-button">View Player Statistics</button>
+</div>
+
+<!-- Add this modal structure to both first-team.html and reserves.html -->
+<div id="stats-modal" class="modal">
+    <div class="modal-content">
+        <span class="modal-close">&times;</span>
+        <h2>Player Statistics</h2>
+        
+        <div class="stats-tabs">
+            <button class="tab-button active" data-position="all">All</button>
+            <button class="tab-button" data-position="goalkeepers">Goalkeepers</button>
+            <button class="tab-button" data-position="defenders">Defenders</button>
+            <button class="tab-button" data-position="midfielders">Midfielders</button>
+            <button class="tab-button" data-position="attackers">Attackers</button>
         </div>
-    </footer>
+        
+        <div class="stats-table-container">
+            <table class="stats-table">
+                <thead>
+                    <tr>
+                        <th>Player</th>
+                        <th>Matches</th>
+                        <th>Goals</th>
+                        <th>Assists</th>
+                        <th>Clean Sheets</th>
+                        <th>Yellow Cards</th>
+                        <th>Red Cards</th>
+                    </tr>
+                </thead>
+                <tbody id="stats-body">
+                    <!-- For first-team.html, include these sample stats -->
+                    <tr data-position="goalkeepers">
+                        <td>Jimmy Knowles</td>
+                        <td>15</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>7</td>
+                        <td>1</td>
+                        <td>0</td>
+                    </tr>
+                    <tr data-position="defenders">
+                        <td>Kyle Croft</td>
+                        <td>14</td>
+                        <td>2</td>
+                        <td>1</td>
+                        <td>7</td>
+                        <td>3</td>
+                        <td>0</td>
+                    </tr>
+                    <tr data-position="defenders">
+                        <td>Njoh Mtanase</td>
+                        <td>16</td>
+                        <td>1</td>
+                        <td>3</td>
+                        <td>7</td>
+                        <td>2</td>
+                        <td>0</td>
+                    </tr>
+                    <tr data-position="midfielders">
+                        <td>Charlton Rooke</td>
+                        <td>15</td>
+                        <td>6</td>
+                        <td>8</td>
+                        <td>0</td>
+                        <td>4</td>
+                        <td>1</td>
+                    </tr>
+                    <tr data-position="midfielders">
+                        <td>Gabriel Ebede</td>
+                        <td>13</td>
+                        <td>4</td>
+                        <td>6</td>
+                        <td>0</td>
+                        <td>1</td>
+                        <td>0</td>
+                    </tr>
+                    <tr data-position="attackers">
+                        <td>Ethan Shipstone</td>
+                        <td>16</td>
+                        <td>12</td>
+                        <td>5</td>
+                        <td>0</td>
+                        <td>2</td>
+                        <td>0</td>
+                    </tr>
+                    <tr data-position="attackers">
+                        <td>Harry O'Neill</td>
+                        <td>14</td>
+                        <td>9</td>
+                        <td>7</td>
+                        <td>0</td>
+                        <td>1</td>
+                        <td>0</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2023 Awsworth Villa FC. All rights reserved.</p>
+    <p>Website designed by Njoh Mtanase</p>
+    <div class="social-media">
+        <a href="https://x.com/awsworthvilla?lang=en-GB" target="_blank" aria-label="Twitter">
+            <img src="Images/X_logo.jpg" alt="Twitter" class="social-icon">
+        </a>
+        <a href="https://instagram.com" target="_blank" aria-label="Instagram">
+            <img src="Images/Instagram_logo_2022" alt="Instagram" class="social-icon">
+        </a>
+        <a href="https://tiktok.com" target="_blank" aria-label="TikTok">
+            <img src="Images/tiktok_logo" alt="TikTok" class="social-icon">
+        </a>
+    </div>
+</footer>
 
     <script src="script.js"></script>
 

@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>My Profile - Awsworth Villa FC</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="shortcut icon" type="image/x-icon" href="Images/awsworth-villa badge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="Images/awsworth-villa badge" alt="Awsworth Villa FC">
+            <h1>Awsworth Villa FC</h1>
+        </div>
+        <div class="menu-toggle">
+            <div class="hamburger"></div>
+            <div class="hamburger"></div>
+            <div class="hamburger"></div>
+        </div>
+        <nav>
+            <span class="close-btn">×</span>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li class="dropdown">
+                    <p>Teams</p>
+                    <div class="dropdown-content">
+                        <a href="first-team.html">First Team</a>
+                        <a href="reserves.html">Reserve Team</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <p>Matches</p>
+                    <div class="dropdown-content">
+                        <a href="first-team-matches.html">First Team</a>
+                        <a href="reserves-matches.html">Reserve Team</a>
+                    </div>
+                </li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="login.html" class="login-link">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="profile-container">
+        <h1>My Profile</h1>
+        
+        <div class="profile-content">
+            <div class="profile-sidebar">
+                <div class="profile-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="profile-info">
+                    <h2 id="profile-name">Loading...</h2>
+                    <p id="profile-email">Loading...</p>
+                    <p id="profile-role" class="profile-role">Loading...</p>
+                    <p id="profile-joined">Joined: Loading...</p>
+                </div>
+                <div class="profile-actions">
+                    <button id="edit-profile-btn" class="action-button">
+                        <i class="fas fa-edit"></i> Edit Profile
+                    </button>
+                    <button id="change-password-btn" class="action-button secondary">
+                        <i class="fas fa-key"></i> Change Password
+                    </button>
+                    <a href="admin-verify.html" id="admin-request-btn" class="action-button tertiary">
+                        <i class="fas fa-shield-alt"></i> Request Admin Access
+                    </a>
+                </div>
+            </div>
+            
+            <div class="profile-main">
+                <div class="profile-section" id="profile-data-section">
+                    <h3>Account Information</h3>
+                    <div class="profile-data">
+                        <div class="data-item">
+                            <div class="data-label">Full Name</div>
+                            <div class="data-value" id="display-name">Loading...</div>
+                        </div>
+                        <div class="data-item">
+                            <div class="data-label">Email Address</div>
+                            <div class="data-value" id="display-email">Loading...</div>
+                        </div>
+                        <div class="data-item">
+                            <div class="data-label">Account Type</div>
+                            <div class="data-value" id="display-role">Loading...</div>
+                        </div>
+                        <div class="data-item">
+                            <div class="data-label">Registration Date</div>
+                            <div class="data-value" id="display-registered">Loading...</div>
+                        </div>
+                        <div class="data-item">
+                            <div class="data-label">Last Login</div>
+                            <div class="data-value" id="display-lastlogin">Loading...</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Edit Profile Form (hidden by default) -->
+                <<div class="profile-section" id="edit-profile-section" style="display: none;">
+                    <h3>Edit Profile</h3>
+                    <form id="edit-profile-form">
+                        <div class="form-group">
+                            <label for="edit-name">Full Name</label>
+                            <input type="text" id="edit-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-email">Email Address</label>
+                            <input type="email" id="edit-email" required>
+                        </div>
+                        <div class="form-buttons">
+                            <button type="submit" class="submit-button">Save Changes</button>
+                            <button type="button" id="cancel-edit-btn" class="cancel-button">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+                
+                <!-- Change Password Form (hidden by default) -->
+                <div class="profile-section" id="change-password-section" style="display: none;">
+                    <h3>Change Password</h3>
+                    <form id="change-password-form">
+                        <div class="form-group">
+                            <label for="current-password">Current Password</label>
+                            <input type="password" id="current-password" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="new-password">New Password</label>
+                            <input type="password" id="new-password" required>
+                            <p class="password-hint">Password must be at least 6 characters long</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirm-new-password">Confirm New Password</label>
+                            <input type="password" id="confirm-new-password" required>
+                        </div>
+                        <div class="form-buttons">
+                            <button type="submit" class="submit-button">Change Password</button>
+                            <button type="button" id="cancel-password-btn" class="cancel-button">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+                
+                <!-- Only visible for admins -->
+                <div class="profile-section admin-section" id="admin-tools-section" style="display: none;">
+                    <h3>Admin Tools</h3>
+                    <div class="admin-tools">
+                        <a href="admin-dashboard.html" class="admin-tool-card">
+                            <div class="tool-icon">
+                                <i class="fas fa-tachometer-alt"></i>
+                            </div>
+                            <div class="tool-info">
+                                <h4>Admin Dashboard</h4>
+                                <p>Manage website content and users</p>
+                            </div>
+                        </a>
+                        <a href="admin-dashboard.html#users-panel" class="admin-tool-card">
+                            <div class="tool-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="tool-info">
+                                <h4>User Management</h4>
+                                <p>Manage registered users</p>
+                            </div>
+                        </a>
+                        <a href="admin-dashboard.html#settings-panel" class="admin-tool-card">
+                            <div class="tool-icon">
+                                <i class="fas fa-cog"></i>
+                            </div>
+                            <div class="tool-info">
+                                <h4>Site Settings</h4>
+                                <p>Configure website settings</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Awsworth Villa FC. All rights reserved.</p>
+        <p>Website designed by Njoh Mtanase</p>
+        <div class="social-media">
+            <a href="https://x.com/awsworthvilla?lang=en-GB" target="_blank" aria-label="Twitter">
+                <img src="Images/X_logo.jpg" alt="Twitter" class="social-icon">
+            </a>
+            <a href="https://instagram.com" target="_blank" aria-label="Instagram">
+                <img src="Images/Instagram_logo_2022" alt="Instagram" class="social-icon">
+            </a>
+            <a href="https://tiktok.com" target="_blank" aria-label="TikTok">
+                <img src="Images/tiktok_logo" alt="TikTok" class="social-icon">
+            </a>
+        </div>
+    </footer>
+    
+    <style>
+        /* Profile Page Styles */
+        .profile-container {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        
+        .profile-container h1 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        .profile-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        
+        /* Sidebar */
+        .profile-sidebar {
+            flex: 0 0 250px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .profile-avatar {
+            width: 100px;
+            height: 100px;
+            background-color: #f53832;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin: 0 auto 20px;
+        }
+        
+        .profile-info {
+            margin-bottom: 20px;
+        }
+        
+        .profile-info h2 {
+            font-size: 1.4rem;
+            color: #333;
+            margin: 0 0 5px;
+        }
+        
+        .profile-info p {
+            color: #666;
+            margin: 0 0 5px;
+        }
+        
+        .profile-role {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-top: 5px;
+        }
+        
+        .profile-role.admin {
+            background-color: #f53832;
+            color: white;
+        }
+        
+        .profile-role.user {
+            background-color: #6c757d;
+            color: white;
+        }
+        
+        .profile-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .profile-actions .action-button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+        
+        .profile-actions .action-button i {
+            font-size: 0.9rem;
+        }
+        
+        .action-button {
+            background-color: #f53832;
+            color: white;
+        }
+        
+        .action-button:hover {
+            background-color: #d10000;
+            transform: translateY(-2px);
+        }
+        
+        .action-button.secondary {
+            background-color: #2196F3;
+            color: white;
+        }
+        
+        .action-button.secondary:hover {
+            background-color: #0b7dda;
+        }
+        
+        .action-button.tertiary {
+            background-color: #6c757d;
+            color: white;
+        }
+        
+        .action-button.tertiary:hover {
+            background-color: #5a6268;
+        }
+        
+        /* Main Content */
+        .profile-main {
+            flex: 1;
+            min-width: 0; /* Fix for flexbox overflow */
+        }
+        
+        .profile-section {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .profile-section h3 {
+            font-size: 1.2rem;
+            color: #333;
+            margin-top: 0;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        /* Profile Data */
+        .profile-data {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        
+        .data-item {
+            padding: 10px 0;
+        }
+        
+        .data-label {
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        
+        .data-value {
+            font-size: 1rem;
+            color: #333;
+            font-weight: 600;
+        }
+        
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+            color: #555;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        .form-group input:focus {
+            border-color: #f53832;
+            outline: none;
+        }
+        
+        .password-hint {
+            font-size: 0.8rem;
+            color: #666;
+            margin-top: 5px;
+            margin-bottom: 0;
+        }
+        
+        .form-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .submit-button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        
+        .submit-button:hover {
+            background-color: #218838;
+        }
+        
+        .cancel-button {
+            background-color: #6c757d;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        
+        .cancel-button:hover {
+            background-color: #5a6268;
+        }
+        
+        /* Admin Tools */
+        .admin-tools {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+        
+        .admin-tool-card {
+            background-color: #f9f9f9;
+            border-radius: 6px;
+            padding: 15px;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: all 0.2s ease;
+        }
+        
+        .admin-tool-card:hover {
+            background-color: #f1f1f1;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .tool-icon {
+            width: 40px;
+            height: 40px;
+            background-color: #f53832;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+        
+        .tool-info h4 {
+            margin: 0 0 5px;
+            font-size: 1rem;
+            color: #333;
+        }
+        
+        .tool-info p {
+            margin: 0;
+            font-size: 0.8rem;
+            color: #666;
+        }
+        
+        /* Notification */
+        .profile-notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 20px;
+            border-radius: 6px;
+            color: white;
+            font-size: 0.9rem;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            animation: slideIn 0.3s forwards;
+        }
+        
+        .profile-notification.success {
+            background-color: #28a745;
+        }
+        
+        .profile-notification.error {
+            background-color: #dc3545;
+        }
+        
+        .profile-notification.fade-out {
+            animation: fadeOut 0.5s forwards;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .profile-content {
+                flex-direction: column;
+            }
+            
+            .profile-sidebar {
+                flex: none;
+                width: 100%;
+            }
+            
+            .profile-data {
+                grid-template-columns: 1fr;
+            }
+            
+            .admin-tools {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+
+    <script src="script.js"></script>
+    <script src="auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if user is logged in
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            if (!currentUser) {
+                // Redirect to login page if not logged in
+                window.location.href = 'login.html';
+                return;
+            }
+            
+            // Load user data
+            loadUserProfile(currentUser);
+            
+            // Set up event listeners
+            const editProfileBtn = document.getElementById('edit-profile-btn');
+            const changePasswordBtn = document.getElementById('change-password-btn');
+            const cancelEditBtn = document.getElementById('cancel-edit-btn');
+            const cancelPasswordBtn = document.getElementById('cancel-password-btn');
+            const editProfileForm = document.getElementById('edit-profile-form');
+            const changePasswordForm = document.getElementById('change-password-form');
+            
+            // Edit profile button
+            editProfileBtn.addEventListener('click', function() {
+                document.getElementById('profile-data-section').style.display = 'none';
+                document.getElementById('change-password-section').style.display = 'none';
+                document.getElementById('edit-profile-section').style.display = 'block';
+                
+                // Fill form with current data
+                document.getElementById('edit-name').value = currentUser.name;
+                document.getElementById('edit-email').value = currentUser.email;
+            });
+            
+            // Change password button
+            changePasswordBtn.addEventListener('click', function() {
+                document.getElementById('profile-data-section').style.display = 'none';
+                document.getElementById('edit-profile-section').style.display = 'none';
+                document.getElementById('change-password-section').style.display = 'block';
+            });
+            
+            // Cancel buttons
+            cancelEditBtn.addEventListener('click', function() {
+                document.getElementById('edit-profile-section').style.display = 'none';
+                document.getElementById('profile-data-section').style.display = 'block';
+            });
+            
+            cancelPasswordBtn.addEventListener('click', function() {
+                document.getElementById('change-password-section').style.display = 'none';
+                document.getElementById('profile-data-section').style.display = 'block';
+            });
+            
+            // Edit profile form submission
+            editProfileForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const name = document.getElementById('edit-name').value;
+                const email = document.getElementById('edit-email').value;
+                
+                // Get all users
+                const users = JSON.parse(localStorage.getItem('users') || '[]');
+                
+                // Check for duplicate email
+                const isDuplicate = users.some(u => u.email === email && u.id !== currentUser.id);
+                if (isDuplicate) {
+                    showProfileNotification('Email is already in use by another account', 'error');
+                    return;
+                }
+                
+                // Update user data
+                const userIndex = users.findIndex(u => u.id === currentUser.id);
+                if (userIndex !== -1) {
+                    users[userIndex].name = name;
+                    users[userIndex].email = email;
+                    
+                    // Update localStorage
+                    localStorage.setItem('users', JSON.stringify(users));
+                    
+                    // Update current user
+                    currentUser.name = name;
+                    currentUser.email = email;
+                    localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                    
+                    // Reload profile data
+                    loadUserProfile(currentUser);
+                    
+                    // Show success message
+                    showProfileNotification('Profile updated successfully', 'success');
+                    
+                    // Switch back to profile view
+                    document.getElementById('edit-profile-section').style.display = 'none';
+                    document.getElementById('profile-data-section').style.display = 'block';
+                }
+            });
+            
+            // Change password form submission
+            changePasswordForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const currentPassword = document.getElementById('current-password').value;
+                const newPassword = document.getElementById('new-password').value;
+                const confirmNewPassword = document.getElementById('confirm-new-password').value;
+                
+                // Validate current password
+                if (currentUser.password !== currentPassword) {
+                    showProfileNotification('Current password is incorrect', 'error');
+                    return;
+                }
+                
+                // Validate new password
+                if (newPassword.length < 6) {
+                    showProfileNotification('New password must be at least 6 characters long', 'error');
+                    return;
+                }
+                
+                // Validate password confirmation
+                if (newPassword !== confirmNewPassword) {
+                    showProfileNotification('Password confirmation does not match', 'error');
+                    return;
+                }
+                
+                // Update password
+                const users = JSON.parse(localStorage.getItem('users') || '[]');
+                const userIndex = users.findIndex(u => u.id === currentUser.id);
+                
+                if (userIndex !== -1) {
+                    users[userIndex].password = newPassword;
+                    
+                    // Update localStorage
+                    localStorage.setItem('users', JSON.stringify(users));
+                    
+                    // Update current user
+                    currentUser.password = newPassword;
+                    localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                    
+                    // Show success message
+                    showProfileNotification('Password changed successfully', 'success');
+                    
+                    // Reset form and switch back to profile view
+                    changePasswordForm.reset();
+                    document.getElementById('change-password-section').style.display = 'none';
+                    document.getElementById('profile-data-section').style.display = 'block';
+                }
+            });
+            
+            // Show admin tools section for admin users
+            if (currentUser.role === 'admin') {
+                document.getElementById('admin-tools-section').style.display = 'block';
+                document.getElementById('admin-request-btn').style.display = 'none';
+            }
+        });
+        
+        // Load user profile data
+        function loadUserProfile(user) {
+            // Update profile sidebar
+            document.getElementById('profile-name').textContent = user.name;
+            document.getElementById('profile-email').textContent = user.email;
+            
+            const roleEl = document.getElementById('profile-role');
+            roleEl.textContent = user.role === 'admin' ? 'Administrator' : 'Regular User';
+            roleEl.className = 'profile-role ' + user.role;
+            
+            const joinedDate = new Date(user.registeredOn).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+            document.getElementById('profile-joined').textContent = 'Joined: ' + joinedDate;
+            
+            // Update profile data section
+            document.getElementById('display-name').textContent = user.name;
+            document.getElementById('display-email').textContent = user.email;
+            document.getElementById('display-role').textContent = user.role === 'admin' ? 'Administrator' : 'Regular User';
+            document.getElementById('display-registered').textContent = joinedDate;
+            
+            const lastLoginDate = user.lastLogin ? new Date(user.lastLogin).toLocaleString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            }) : 'Never';
+            document.getElementById('display-lastlogin').textContent = lastLoginDate;
+        }
+        
+        // Show notification
+        function showProfileNotification(message, type) {
+            // Create notification element
+            let notification = document.createElement('div');
+            notification.className = `profile-notification ${type}`;
+            notification.textContent = message;
+            
+            // Add to document
+            document.body.appendChild(notification);
+            
+            // Remove after 3 seconds
+            setTimeout(() => {
+                notification.classList.add('fade-out');
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 500);
+            }, 3000);
+        }
+    </script>
+</body>
+</html>

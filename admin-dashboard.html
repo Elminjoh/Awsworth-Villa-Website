@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Admin Dashboard - Awsworth Villa FC</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="admin-styles.css">
+    <link rel="shortcut icon" type="image/x-icon" href="Images/awsworth-villa badge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="Images/awsworth-villa badge" alt="Awsworth Villa FC">
+            <h1>Awsworth Villa FC</h1>
+        </div>
+        <div class="menu-toggle">
+            <div class="hamburger"></div>
+            <div class="hamburger"></div>
+            <div class="hamburger"></div>
+        </div>
+        <nav>
+            <span class="close-btn">×</span>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li class="dropdown">
+                    <p>Teams</p>
+                    <div class="dropdown-content">
+                        <a href="first-team.html">First Team</a>
+                        <a href="reserves.html">Reserve Team</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <p>Matches</p>
+                    <div class="dropdown-content">
+                        <a href="first-team-matches.html">First Team</a>
+                        <a href="reserves-matches.html">Reserve Team</a>
+                    </div>
+                </li>
+                <li><a href="contact.html">Contact</a></li>
+                <li>
+                    <div class="user-menu">
+                        <span class="username">Admin</span>
+                        <div class="user-dropdown">
+                            <a href="admin-dashboard.html">Admin Dashboard</a>
+                            <a href="profile.html">Profile</a>
+                            <a href="#" id="logout-btn">Logout</a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="admin-banner">
+        <h1>Admin Dashboard</h1>
+    </div>
+
+    <div class="admin-container">
+        <div class="admin-tabs">
+            <button class="admin-tab active" data-tab="dashboard">Dashboard</button>
+            <button class="admin-tab" data-tab="news">News</button>
+            <button class="admin-tab" data-tab="players">Players</button>
+            <button class="admin-tab" data-tab="stats">Statistics</button>
+            <button class="admin-tab" data-tab="matches">Matches</button>
+            <button class="admin-tab" data-tab="users">Users</button>
+            <button class="admin-tab" data-tab="settings">Settings</button>
+        </div>
+
+        <!-- Dashboard Overview Panel -->
+        <div id="dashboard-panel" class="admin-panel active">
+            <h2>Dashboard Overview</h2>
+            
+            <div class="stat-cards">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-newspaper"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-value" id="stats-news-count">0</div>
+                        <div class="stat-label">News Articles</div>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-value" id="stats-players-count">0</div>
+                        <div class="stat-label">Players</div>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-user-plus"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-value" id="stats-users-count">0</div>
+                        <div class="stat-label">Registered Users</div>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-futbol"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-value" id="stats-matches-upcoming">0</div>
+                        <div class="stat-label">Upcoming Matches</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="dashboard-grid">
+                <div class="dashboard-card">
+                    <h3>Player Position Distribution</h3>
+                    <div class="chart-container">
+                        <canvas id="position-chart"></canvas>
+                    </div>
+                </div>
+                
+                <div class="dashboard-card">
+                    <h3>Top Goal Scorers</h3>
+                    <div class="chart-container">
+                        <canvas id="scorers-chart"></canvas>
+                    </div>
+                </div>
+                
+                <div class="dashboard-card">
+                    <h3>First Team Results</h3>
+                    <div class="chart-container">
+                        <canvas id="results-chart"></canvas>
+                    </div>
+                </div>
+                
+                <div class="dashboard-card">
+                    <h3>Recent Activity</h3>
+                    <div class="activity-timeline" id="recent-activity">
+                        <!-- Activity items will be loaded here -->
+                    </div>
+                </div>
+                
+                <div class="dashboard-card">
+                    <h3>Upcoming Matches</h3>
+                    <div id="upcoming-matches">
+                        <!-- Upcoming matches will be loaded here -->
+                    </div>
+                </div>
+                
+                <div class="dashboard-card">
+                    <h3>Recent Members</h3>
+                    <div id="recent-members">
+                        <!-- Recent members will be loaded here -->
+                    </div>
+                </div>
+                
+                <div class="dashboard-card full-width">
+                    <h3>Quick Actions</h3>
+                    <div class="quick-actions">
+                        <button id="backup-data-btn" class="action-button">
+                            <i class="fas fa-download"></i> Backup Data
+                        </button>
+                        <form id="restore-form" class="restore-form">
+                            <input type="file" id="backup-file" accept=".json">
+                            <button type="submit" class="action-button">
+                                <i class="fas fa-upload"></i> Restore Data
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- News Management Panel -->
+        <div id="news-panel" class="admin-panel">
+            <h2>News Management</h2>
+            <div class="admin-actions">
+                <button id="add-news-btn" class="action-button">
+                    <i class="fas fa-plus"></i> Add New Article
+                </button>
+                <select id="news-filter">
+                    <option value="all">All Categories</option>
+                    <option value="match-report">Match Reports</option>
+                    <option value="transfer-news">Transfer News</option>
+                    <option value="club-news">Club News</option>
+                    <option value="event">Events</option>
+                    <option value="general">General</option>
+                </select>
+                <button id="export-news-btn" class="export-button">
+                    <i class="fas fa-file-export"></i> Export
+                </button>
+            </div>
+            
+            <div class="admin-form" id="news-form" style="display: none;">
+                <h3>Add/Edit News Article</h3>
+                <form id="news-editor">
+                    <input type="hidden" id="news-id">
+                    <div class="form-group">
+                        <label for="news-title">Title</label>
+                        <input type="text" id="news-title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="news-date">Date</label>
+                        <input type="date" id="news-date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="news-category">Category</label>
+                        <select id="news-category" required>
+                            <option value="match-report">Match Report</option>
+                            <option value="transfer-news">Transfer News</option>
+                            <option value="club-news">Club News</option>
+                            <option value="event">Event</option>
+                            <option value="general">General</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="news-excerpt">Excerpt</label>
+                        <textarea id="news-excerpt" rows="2" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="news-content">Content</label>
+                        <textarea id="news-content" rows="6" required></textarea>
+                    </div>
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="news-featured">
+                        <label for="news-featured">Featured Article</label>
+                    </div>
+                    <div class="form-buttons">
+                        <button type="submit" class="submit-button">Save</button>
+                        <button type="button" class="cancel-button">Cancel</button>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="admin-table-container">
+                <table class="admin-table" id="news-table">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Date</th>
+                            <th>Category</th>
+                            <th>Featured</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="news-table-body">
+                        <!-- News articles will be loaded here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Player Management Panel -->
+        <div id="players-panel" class="admin-panel">
+            <h2>Player Management</h2>
+            <div class="admin-actions">
+                <button id="add-player-btn" class="action-button">
+                    <i class="fas fa-plus"></i> Add New Player
+                </button>
+                <select id="team-filter">
+                    <option value="first-team">First Team</option>
+                    <option value="reserves">Reserve Team</option>
+                </select>
+                <select id="position-filter">
+                    <option value="all">All Positions</option>
+                    <option value="goalkeeper">Goalkeepers</option>
+                    <option value="defender">Defenders</option>
+                    <option value="midfielder">Midfielders</option>
+                    <option value="attacker">Attackers</option>
+                </select>
+                <button id="export-players-btn" class="export-button">
+                    <i class="fas fa-file-export"></i> Export
+                </button>
+            </div>
+            
+            <div class="admin-form" id="player-form" style="display: none;">
+                <h3>Add/Edit Player</h3>
+                <form id="player-editor">
+                    <input type="hidden" id="player-id">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="player-name">Player Name</label>
+                            <input type="text" id="player-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="player-number">Shirt Number</label>
+                            <input type="number" id="player-number" min="1" max="99">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="player-team">Team</label>
+                            <select id="player-team" required>
+                                <option value="first-team">First Team</option>
+                                <option value="reserves">Reserve Team</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="player-position">Position</label>
+                            <select id="player-position" required>
+                                <option value="goalkeeper">Goalkeeper</option>
+                                <option value="defender">Defender</option>
+                                <option value="midfielder">Midfielder</option>
+                                <option value="attacker">Attacker</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="player-age">Age</label>
+                            <input type="number" id="player-age" min="16" max="45">
+                        </div>
+                    </div>
+                    <div class="form-buttons">
+                        <button type="submit" class="submit-button">Save</button>
+                        <button type="button" class="cancel-button">Cancel</button>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="admin-table-container">
+                <table class="admin-table" id="players-table">
+                    <thead>
+                        <tr>
+                            <th>Number</th>
+                            <th>Player Name</th>
+                            <th>Position</th>
+                            <th>Age</th>
+                            <th>Team</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="players-table-body">
+                        <!-- Players will be loaded here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Player Stats Panel -->
+        <div id="stats-panel" class="admin-panel">
+            <h2>Player Statistics</h2>
+            <div class="admin-actions">
+                <select id="stats-team-filter">
+                    <option value="first-team">First Team</option>
+                    <option value="reserves">Reserve Team</option>
+                </select>
+                <div class="position-filter">
+                    <button class="position-filter-btn active" data-position="all">All</button>
+                    <button class="position-filter-btn" data-position="goalkeeper">GK</button>
+                    <button class="position-filter-btn" data-position="defender">DEF</button>
+                    <button class="position-filter-btn" data-position="midfielder">MID</button>
+                    <button class="position-filter-btn" data-position="attacker">ATT</button>
+                </div>
+                <button id="export-stats-btn" class="export-button">
+                    <i class="fas fa-file-export"></i> Export
+                </button>
+            </div>
+            
+            <div class="admin-table-container">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Player</th>
+                            <th>Matches</th>
+                            <th>Goals</th>
+                            <th>Assists</th>
+                            <th>Clean Sheets</th>
+                            <th>Yellow Cards</th>
+                            <th>Red Cards</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="stats-table-body">
+                        <!-- Player stats will be loaded here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Matches Management Panel -->
+        <div id="matches-panel" class="admin-panel">
+            <h2>Matches Management</h2>
+            <div class="admin-actions">
+                <button id="add-match-btn" class="action-button">
+                    <i class="fas fa-plus"></i> Add New Match
+                </button>
+                <select id="matches-team-filter">
+                    <option value="all">All Teams</option>
+                    <option value="first-team">First Team</option>
+                    <option value="reserves">Reserve Team</option>
+                </select>
+                <button id="export-matches-btn" class="export-button">
+                    <i class="fas fa-file-export"></i> Export
+                </button>
+            </div>
+            
+            <div class="admin-form" id="match-form" style="display: none;">
+                <h3>Add/Edit Match</h3>
+                <form id="match-editor">
+                    <input type="hidden" id="match-id">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="match-team">Team</label>
+                            <select id="match-team" required>
+                                <option value="first-team">First Team</option>
+                                <option value="reserves">Reserve Team</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="match-opponent">Opponent</label>
+                            <input type="text" id="match-opponent" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="match-date">Date</label>
+                            <input type="date" id="match-date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="match-time">Time</label>
+                            <input type="time" id="match-time" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="match-location">Location</label>
+                            <select id="match-location" required>
+                                <option value="Home">Home</option>
+                                <option value="Away">Away</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="match-competition">Competition</label>
+                            <select id="match-competition" required>
+                                <option value="League">League</option>
+                                <option value="Cup">Cup</option>
+                                <option value="Friendly">Friendly</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="match-status">Status</label>
+                            <select id="match-status" required>
+                                <option value="upcoming">Upcoming</option>
+                                <option value="completed">Completed</option>
+                                <option value="postponed">Postponed</option>
+                                <option value="cancelled">Cancelled</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div id="result-fields" style="display: none;">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="match-home-score">Home Score</label>
+                                <input type="number" id="match-home-score" min="0">
+                            </div>
+                            <div class="form-group">
+                                <label for="match-away-score">Away Score</label>
+                                <input type="number" id="match-away-score" min="0">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="match-report">Match Report</label>
+                            <textarea id="match-report" rows="4"></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="form-buttons">
+                        <button type="submit" class="submit-button">Save</button>
+                        <button type="button" class="cancel-button">Cancel</button>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="admin-table-container">
+                <table class="admin-table" id="matches-table">
+                    <thead>
+                        <tr>
+                            <th>Team</th>
+                            <th>Opponent</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Location</th>
+                            <th>Competition</th>
+                            <th>Result</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="matches-table-body">
+                        <!-- Matches will be loaded here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- User Management Panel -->
+        <div id="users-panel" class="admin-panel">
+            <h2>User Management</h2>
+            <div class="admin-actions">
+                <button id="add-user-btn" class="action-button">
+                    <i class="fas fa-plus"></i> Add New User
+                </button>
+                <select id="role-filter">
+                    <option value="all">All Roles</option>
+                    <option value="admin">Admins</option>
+                    <option value="user">Regular Users</option>
+                </select>
+                <button id="export-users-btn" class="export-button">
+                    <i class="fas fa-file-export"></i> Export
+                </button>
+            </div>
+            
+            <div class="admin-form" id="user-form" style="display: none;">
+                <h3>Add/Edit User</h3>
+                <form id="user-editor">
+                    <input type="hidden" id="user-id">
+                    <div class="form-group">
+                        <label for="user-name">Full Name</label>
+                        <input type="text" id="user-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="user-email">Email</label>
+                        <input type="email" id="user-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="user-role">Role</label>
+                        <select id="user-role" required>
+                            <option value="user">Regular User</option>
+                            <option value="admin">Admin</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="user-password">Password (leave blank to keep unchanged)</label>
+                        <input type="password" id="user-password">
+                    </div>
+                    <div class="form-buttons">
+                        <button type="submit" class="submit-button">Save</button>
+                        <button type="button" class="cancel-button">Cancel</button>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="admin-table-container">
+                <table class="admin-table" id="users-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>Registered</th>
+                            <th>Last Login</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="users-table-body">
+                        <!-- User data will be loaded here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Site Settings Panel -->
+        <div id="settings-panel" class="admin-panel">
+            <h2>Site Settings</h2>
+            
+            <form id="settings-form" class="settings-form">
+                <div class="settings-section">
+                    <h3>General Settings</h3>
+                    <div class="form-group">
+                        <label for="club-name">Club Name</label>
+                        <input type="text" id="club-name" value="Awsworth Villa FC">
+                    </div>
+                    <div class="form-group">
+                        <label for="club-motto">Club Motto/Slogan</label>
+                        <input type="text" id="club-motto" placeholder="e.g. Passion, Pride, Performance">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="club-phone">Contact Phone</label>
+                            <input type="tel" id="club-phone" placeholder="+44 115 XXX XXXX">
+                        </div>
+                        <div class="form-group">
+                            <label for="club-email">Contact Email</label>
+                            <input type="email" id="club-email" placeholder="info@awsworthvilla.com">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="settings-section">
+                    <h3>Social Media Links</h3>
+                    <div class="form-group">
+                        <label for="twitter-url">Twitter/X URL</label>
+                        <input type="url" id="twitter-url" placeholder="https://x.com/awsworthvilla">
+                    </div>
+                    <div class="form-group">
+                        <label for="instagram-url">Instagram URL</label>
+                        <input type="url" id="instagram-url" placeholder="https://instagram.com/awsworthvilla">
+                    </div>
+                    <div class="form-group">
+                        <label for="tiktok-url">TikTok URL</label>
+                        <input type="url" id="tiktok-url" placeholder="https://tiktok.com/@awsworthvilla">
+                    </div>
+                </div>
+                
+                <div class="settings-section">
+                    <h3>Sponsor Logos</h3>
+                    <div id="sponsor-logos-container" class="sponsor-logos-container">
+                        <!-- Sponsor logos will be displayed here -->
+                    </div>
+                    <button type="button" id="add-sponsor-btn" class="action-button" onclick="addSponsorLogo()">
+                        <i class="fas fa-plus"></i> Add Sponsor Logo
+                    </button>
+                </div>
+                
+                <div class="settings-section">
+                    <h3>Maintenance Mode</h3>
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="maintenance-mode">
+                        <label for="maintenance-mode">Enable Maintenance Mode</label>
+                        <p class="help-text">When enabled, a maintenance message will be shown to all visitors except admins.</p>
+                    </div>
+                </div>
+                
+                <div class="form-buttons">
+                    <button type="submit" class="submit-button">Save Settings</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <div id="view-news-modal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2 class="modal-title">Article Title</h2>
+            <p class="modal-date">Publication Date</p>
+            <div class="modal-content-text">
+                <!-- Article content will be displayed here -->
+            </div>
+        </div>
+    </div>
+    
+    <div id="view-stats-modal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2 class="modal-title">Player Statistics</h2>
+            <div class="modal-content-text">
+                <!-- Player stats will be displayed here -->
+            </div>
+        </div>
+    </div>
+
+    <div id="admin-notification" class="notification"></div>
+
+    <footer>
+        <p>&copy; 2025 Awsworth Villa FC. All rights reserved.</p>
+        <p>Website designed by Njoh Mtanase</p>
+        <div class="social-media">
+            <a href="https://x.com/awsworthvilla?lang=en-GB" target="_blank" aria-label="Twitter">
+                <img src="Images/X_logo.jpg" alt="Twitter" class="social-icon">
+            </a>
+            <a href="https://instagram.com" target="_blank" aria-label="Instagram">
+                <img src="Images/Instagram_logo_2022" alt="Instagram" class="social-icon">
+            </a>
+            <a href="https://tiktok.com" target="_blank" aria-label="TikTok">
+                <img src="Images/tiktok_logo" alt="TikTok" class="social-icon">
+            </a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="auth.js"></script>
+    <script src="admin.js"></script>
+</body>
+</html>

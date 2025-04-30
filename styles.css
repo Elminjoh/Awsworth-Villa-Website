@@ -609,3 +609,775 @@ nav ul > li {
         font-size: 1.3rem;
     }
 }
+
+/* News Section Styles */
+#news-section {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#news-section h1 {
+    font-size: 1.8rem;
+    color: #0c0c0c;
+    margin-bottom: 20px;
+    text-align: center;
+    text-transform: uppercase;
+    border-bottom: 2px solid #f53832;
+    padding-bottom: 10px;
+}
+
+.news-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.news-card {
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.news-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.news-image {
+    height: 200px;
+    overflow: hidden;
+}
+
+.news-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.news-card:hover .news-image img {
+    transform: scale(1.05);
+}
+
+.news-content {
+    padding: 15px;
+}
+
+.news-content h3 {
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.news-date {
+    font-size: 0.8rem;
+    color: #777;
+    margin-bottom: 8px;
+}
+
+.news-excerpt {
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 15px;
+    line-height: 1.4;
+}
+
+.read-more {
+    display: inline-block;
+    color: #f53832;
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.read-more:hover {
+    color: #d10000;
+}
+
+/* Responsive styles for news section */
+@media (max-width: 768px) {
+    .news-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .news-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Add these styles to styles.css */
+
+/* Stats Button Styles */
+.stats-button-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0 40px 0;
+}
+
+.stats-button {
+    background-color: #f53832;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.stats-button:hover {
+    background-color: #d10000;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 2000;
+    overflow-y: auto;
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 40px auto;
+    max-width: 900px;
+    width: 90%;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    padding: 25px;
+    position: relative;
+}
+
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 2rem;
+    color: #777;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.modal-close:hover {
+    color: #f53832;
+}
+
+.modal-content h2 {
+    font-size: 1.8rem;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #f53832;
+}
+
+/* Stats Tabs */
+.stats-tabs {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.tab-button {
+    background-color: #f1f1f1;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
+}
+
+.tab-button.active {
+    background-color: #f53832;
+    color: white;
+}
+
+.tab-button:hover:not(.active) {
+    background-color: #e0e0e0;
+}
+
+/* Stats Table */
+.stats-table-container {
+    overflow-x: auto;
+    margin-top: 15px;
+}
+
+.stats-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+.stats-table th, 
+.stats-table td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.stats-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    color: #333;
+}
+
+.stats-table tbody tr:hover {
+    background-color: #f9f9f9;
+}
+
+/* Responsive design for the stats table */
+@media (max-width: 768px) {
+    .stats-table {
+        font-size: 0.8rem;
+    }
+    
+    .stats-table th, 
+    .stats-table td {
+        padding: 8px 5px;
+    }
+    
+    .modal-content {
+        width: 95%;
+        padding: 15px;
+    }
+}
+
+/* Add these styles to styles.css */
+
+/* Login/Register link in the header */
+.login-link {
+    background-color: #f53832;
+    color: white !important;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.login-link:hover {
+    background-color: #d10000;
+}
+
+/* Authentication Container */
+.auth-container {
+    max-width: 500px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Authentication Tabs */
+.auth-tabs {
+    display: flex;
+    border-bottom: 2px solid #ddd;
+    margin-bottom: 20px;
+}
+
+.auth-tab {
+    flex: 1;
+    padding: 12px;
+    text-align: center;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #777;
+    transition: all 0.3s ease;
+}
+
+.auth-tab.active {
+    color: #f53832;
+    border-bottom: 2px solid #f53832;
+    margin-bottom: -2px;
+}
+
+.auth-tab:hover:not(.active) {
+    color: #333;
+}
+
+/* Form Styles */
+.auth-form {
+    display: none;
+}
+
+.auth-form.active {
+    display: block;
+}
+
+.auth-form h2 {
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    color: #333;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus {
+    border-color: #f53832;
+    outline: none;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+}
+
+.remember-me input {
+    width: auto;
+    margin-right: 8px;
+}
+
+.remember-me label {
+    margin-bottom: 0;
+}
+
+.auth-button {
+    width: 100%;
+    padding: 12px;
+    background-color: #f53832;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+.auth-button:hover {
+    background-color: #d10000;
+}
+
+.form-message {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.form-message.error {
+    color: #d10000;
+}
+
+.form-message.success {
+    color: #28a745;
+}
+
+.forgot-password {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.forgot-password a {
+    color: #f53832;
+    text-decoration: none;
+}
+
+.forgot-password a:hover {
+    text-decoration: underline;
+}
+
+/* Admin Dashboard Styles */
+.admin-banner {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.admin-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.admin-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.admin-tab {
+    padding: 12px 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+
+.admin-tab.active {
+    background-color: #f53832;
+    color: white;
+}
+
+.admin-panel {
+    display: none;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.admin-panel.active {
+    display: block;
+}
+
+/* Responsive design for auth forms */
+@media (max-width: 576px) {
+    .auth-container {
+        padding: 15px;
+        margin: 20px 15px;
+    }
+    
+    .auth-tab {
+        font-size: 1rem;
+        padding: 10px;
+    }
+}
+
+/* Add these styles to styles.css */
+
+/* User menu in navbar */
+.user-menu {
+    position: relative;
+    cursor: pointer;
+}
+
+.username {
+    display: inline-block;
+    padding: 10px 15px;
+    color: #333;
+    font-weight: bold;
+}
+
+.user-dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #fff;
+    min-width: 180px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    z-index: 100;
+}
+
+.user-dropdown a {
+    display: block;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: #333;
+    transition: background-color 0.3s;
+}
+
+.user-dropdown a:hover {
+    background-color: #f1f1f1;
+}
+
+.user-menu:hover .user-dropdown {
+    display: block;
+}
+
+/* Admin dashboard styles */
+.admin-banner {
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.admin-banner h1 {
+    margin: 0;
+    font-size: 1.8rem;
+}
+
+.admin-container {
+    max-width: 1200px;
+    margin: 0 auto 40px;
+    padding: 0 20px;
+}
+
+.admin-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #f1f1f1;
+    border-radius: 8px 8px 0 0;
+    overflow: hidden;
+    margin-bottom: 0;
+}
+
+.admin-tab {
+    padding: 15px 25px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+    color: #555;
+    font-weight: 600;
+}
+
+.admin-tab:hover {
+    background-color: #e0e0e0;
+}
+
+.admin-tab.active {
+    background-color: #f53832;
+    color: white;
+}
+
+.admin-panel {
+    display: none;
+    background-color: #f9f9f9;
+    padding: 25px;
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.admin-panel.active {
+    display: block;
+}
+
+.admin-panel h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 1.5rem;
+    border-bottom: 2px solid #f53832;
+    padding-bottom: 10px;
+}
+
+/* Admin actions area */
+.admin-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    align-items: center;
+}
+
+.action-button {
+    background-color: #f53832;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.action-button:hover {
+    background-color: #d10000;
+    transform: translateY(-2px);
+}
+
+/* Admin form styles */
+.admin-form {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 25px;
+}
+
+.admin-form h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.submit-button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submit-button:hover {
+    background-color: #218838;
+}
+
+.cancel-button {
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.cancel-button:hover {
+    background-color: #5a6268;
+}
+
+/* Admin table styles */
+.admin-table-container {
+    overflow-x: auto;
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.admin-table th, 
+.admin-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.admin-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    color: #333;
+}
+
+.admin-table tbody tr:hover {
+    background-color: #f9f9f9;
+}
+
+.action-cell {
+    white-space: nowrap;
+}
+
+.edit-btn, 
+.delete-btn {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    margin-right: 5px;
+    transition: background-color 0.3s;
+}
+
+.edit-btn {
+    background-color: #ffc107;
+    color: #212529;
+}
+
+.edit-btn:hover {
+    background-color: #e0a800;
+}
+
+.delete-btn {
+    background-color: #dc3545;
+    color: white;
+}
+
+.delete-btn:hover {
+    background-color: #c82333;
+}
+
+select {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: white;
+    cursor: pointer;
+}
+
+/* Form field styles */
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    resize: vertical;
+    font-family: inherit;
+    font-size: 1rem;
+}
+
+/* Responsive design for admin dashboard */
+@media (max-width: 768px) {
+    .admin-tabs {
+        flex-direction: column;
+    }
+    
+    .admin-tab {
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+    
+    .admin-actions {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+    
+    .admin-table th, 
+    .admin-table td {
+        padding: 10px 8px;
+        font-size: 0.9rem;
+    }
+    
+    .edit-btn, 
+    .delete-btn {
+        padding: 5px 8px;
+        font-size: 0.8rem;
+    }
+}

@@ -70,4 +70,61 @@ document.addEventListener('DOMContentLoaded', function() {
         attempts++;
         if (attempts >= 5) clearInterval(interval);
     }, 1000);
+
+    // Player Stats Modal functionality
+    const statsBtn = document.getElementById('show-stats-btn');
+    const statsModal = document.getElementById('stats-modal');
+    
+    if (statsBtn && statsModal) {
+        const modalClose = document.querySelector('.modal-close');
+        const tabButtons = document.querySelectorAll('.tab-button');
+        
+        // Show modal when clicking the stats button
+        statsBtn.addEventListener('click', function() {
+            statsModal.style.display = 'block';
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        });
+        
+        // Close modal when clicking the X
+        if (modalClose) {
+            modalClose.addEventListener('click', function() {
+                statsModal.style.display = 'none';
+                document.body.style.overflow = ''; // Restore scrolling
+            });
+        }
+        
+        // Close modal when clicking outside the content
+        window.addEventListener('click', function(e) {
+            if (e.target === statsModal) {
+                statsModal.style.display = 'none';
+                document.body.style.overflow = '';
+            }
+        });
+        
+        // Tab filtering functionality
+        tabButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all buttons
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                // Get position to filter
+                const position = this.dataset.position;
+                
+                // Get all rows
+                const rows = document.querySelectorAll('#stats-body tr');
+                
+                // Show/hide rows based on position
+                rows.forEach(row => {
+                    if (position === 'all' || row.dataset.position === position) {
+                        row.style.display = '';
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+            });
+        });
+    }
 });
