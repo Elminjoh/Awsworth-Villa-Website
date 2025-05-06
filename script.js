@@ -5,21 +5,33 @@ document.addEventListener('DOMContentLoaded', function() {
     const closeBtn = document.querySelector('.close-btn');
     const dropdowns = document.querySelectorAll('.dropdown');
     
-    // Toggle menu
+    // Toggle menu - show X, hide hamburger on mobile only
     menuToggle.addEventListener('click', function(e) {
         e.stopPropagation();
         nav.classList.add('active');
         document.body.style.overflow = 'hidden';
+        
+        // Only hide hamburger on mobile
+        if (window.innerWidth <= 768) {
+            menuToggle.style.display = 'none';
+        }
     });
     
-    // Close menu
-    closeBtn.addEventListener('click', function(e) {
-        e.stopPropagation();
-        nav.classList.remove('active');
-        document.body.style.overflow = '';
-    });
+    // Close menu - show hamburger, hide X
+    if (closeBtn) {
+        closeBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            nav.classList.remove('active');
+            document.body.style.overflow = '';
+            
+            // Only show hamburger on mobile
+            if (window.innerWidth <= 768) {
+                menuToggle.style.display = 'block';
+            }
+        });
+    }
     
-    // Handle dropdowns on mobile
+    // Handle all dropdowns on mobile (Teams and Admin)
     dropdowns.forEach(dropdown => {
         const p = dropdown.querySelector('p');
         
@@ -34,24 +46,46 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // Close menu when clicking a link
+    // Close menu and any open dropdowns when clicking a link
     const navLinks = document.querySelectorAll('nav a');
     navLinks.forEach(link => {
         link.addEventListener('click', function() {
             if (window.innerWidth <= 768) {
                 nav.classList.remove('active');
                 document.body.style.overflow = '';
+                menuToggle.style.display = 'block';
             }
         });
     });
     
     // Close menu when clicking outside
     document.addEventListener('click', function(e) {
-        if (!nav.contains(e.target) && e.target !== menuToggle) {
+        if (nav && !nav.contains(e.target) && e.target !== menuToggle) {
             nav.classList.remove('active');
             document.body.style.overflow = '';
+            
+            // Only show hamburger on mobile
+            if (window.innerWidth <= 768) {
+                menuToggle.style.display = 'block';
+            }
         }
     });
+    
+    // Improved window resize handler
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 768) {
+            if (nav) {
+                nav.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+            if (menuToggle) {
+                menuToggle.style.display = 'block';
+            }
+        }
+    });
+
+    // Rest of your script.js code...
+
     
     // Make FA tables responsive
     function makeFATablesResponsive() {

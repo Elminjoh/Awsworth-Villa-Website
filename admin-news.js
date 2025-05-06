@@ -213,6 +213,9 @@ function initNewsForm() {
 /**
  * Load news data into the admin table
  */
+
+
+
 function loadNewsData() {
     const newsTableBody = document.getElementById('news-table-body');
     if (!newsTableBody) return;

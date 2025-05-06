@@ -1381,3 +1381,73 @@ textarea {
         font-size: 0.8rem;
     }
 }
+
+/* Improved close button styles - MOBILE ONLY */
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 24px;
+    color: #333;
+    background: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: none; /* Hidden by default */
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1002;
+    transition: background-color 0.3s;
+}
+
+.close-btn:hover {
+    background-color: #f1f1f1;
+}
+
+/* Fix for the Teams dropdown and Admin option in mobile menu */
+@media (max-width: 768px) {
+    /* Show close button only on mobile */
+    nav.active .close-btn {
+        display: flex;
+    }
+    
+    /* Ensure the Admin link is fully visible */
+    nav.active {
+        width: 280px; /* Wider to fit Admin dashboard */
+        padding-bottom: 40px; /* Add bottom padding */
+    }
+    
+    nav ul {
+        width: 100%;
+        padding-top: 60px; /* Space for X button */
+    }
+    
+    /* Improve mobile menu item spacing */
+    nav ul li a, 
+    nav ul li p {
+        padding: 12px 15px;
+        width: 100%;
+        box-sizing: border-box;
+        font-size: 16px; /* Ensure text is readable */
+    }
+    
+    /* Fix dropdown appearance in mobile menu */
+    .dropdown-content {
+        width: 100%;
+        position: static;
+        box-shadow: none;
+        background-color: rgba(255, 255, 255, 0.1);
+        padding: 5px 0;
+    }
+    
+    .dropdown-content a {
+        padding-left: 25px; /* Indent dropdown items */
+    }
+    
+    /* Make sure all dropdown items are visible */
+    .dropdown.active .dropdown-content {
+        max-height: 300px; /* Allow enough space for all items */
+        overflow-y: auto;
+    }
+}

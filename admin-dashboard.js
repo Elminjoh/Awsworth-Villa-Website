@@ -492,3 +492,55 @@ function initBackupRestoreFunctions() {
         });
     }
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Fix for all modal close buttons, including admin panels
+    document.addEventListener('click', function(e) {
+        // Check if the clicked element is a modal close button
+        if (e.target.classList.contains('modal-close') || e.target.closest('.modal-close')) {
+            // Find the closest modal to this button
+            const modal = e.target.closest('.modal');
+            if (modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = ''; // Restore scrolling
+            }
+        }
+    });
+
+    // Additionally, handle the specific player stats modal in admin
+    const playerStatsModals = document.querySelectorAll('.player-stats-modal, #stats-modal');
+    playerStatsModals.forEach(modal => {
+        const closeBtn = modal.querySelector('.modal-close');
+        if (closeBtn) {
+            closeBtn.addEventListener('click', function() {
+                modal.style.display = 'none';
+                document.body.style.overflow = ''; // Restore scrolling
+            });
+        }
+    });
+
+    // Also close modals when clicking outside content
+    window.addEventListener('click', function(e) {
+        const modals = document.querySelectorAll('.modal');
+        modals.forEach(modal => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = ''; // Restore scrolling
+            }
+        });
+    });
+
+    // Close modals with Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                if (modal.style.display === 'block' || modal.style.display === 'flex') {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = ''; // Restore scrolling
+                }
+            });
+        }
+    });
+});
+

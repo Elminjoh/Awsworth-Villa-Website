@@ -57,6 +57,8 @@ function initSettingsForm() {
     });
 }
 
+
+
 /**
  * Load site settings into the form
  */
