@@ -16,6 +16,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Initialize all admin modules
     initAdminModules();
+    
+    // Apply enhanced fixes
+    applyEnhancedFixes();
 });
 
 /**
@@ -47,11 +50,39 @@ function initAdminModules() {
     // Initialize modals
     initModals();
     
-    // Apply fixes
+    // Apply common fixes
     applyCommonFixes();
+}
+
+/**
+ * Enhanced fixes for form submissions and data sync
+ */
+function applyEnhancedFixes() {
+    // Ensure forms submit properly
+    document.querySelectorAll('form').forEach(form => {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const submitButton = form.querySelector('button[type="submit"]');
+            if (submitButton) {
+                submitButton.disabled = true;
+                setTimeout(() => {
+                    submitButton.disabled = false;
+                }, 2000);
+            }
+        });
+    });
+    
+    // Sync data to website immediately after changes
+    window.syncAllData = function() {
+        if (typeof syncNewsToWebsite === 'function') syncNewsToWebsite();
+        if (typeof syncPlayerStats === 'function') syncPlayerStats();
+        if (typeof syncPlayersToTeamPages === 'function') syncPlayersToTeamPages();
+        if (typeof updateWebsiteImages === 'function') updateWebsiteImages();
+    };
 }
 
 // Ensure global functions are available
 window.showNotification = showNotification;
 window.generateUniqueId = generateUniqueId;
 window.exportData = exportData;
+window.syncAllData = syncAllData;

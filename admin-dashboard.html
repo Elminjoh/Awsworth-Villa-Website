@@ -226,6 +226,16 @@
                         <label for="news-content">Content</label>
                         <textarea id="news-content" rows="6" required></textarea>
                     </div>
+                    <div class="form-group">
+                        <label for="news-image">Image URL</label>
+                        <input type="url" id="news-image" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="news-image-preview">Image Preview</label>
+                        <div class="image-preview" id="news-image-preview">
+                            <img src="/api/placeholder/400/200" alt="News Image Preview">
+                        </div>
+                    </div>
                     <div class="form-group checkbox-group">
                         <input type="checkbox" id="news-featured">
                         <label for="news-featured">Featured Article</label>
@@ -263,6 +273,7 @@
                     <i class="fas fa-plus"></i> Add New Player
                 </button>
                 <select id="team-filter">
+                    <option value="all">All Teams</option>
                     <option value="first-team">First Team</option>
                     <option value="reserves">Reserve Team</option>
                 </select>
@@ -638,6 +649,9 @@
             <span class="modal-close">&times;</span>
             <h2 class="modal-title">Article Title</h2>
             <p class="modal-date">Publication Date</p>
+            <div class="modal-image">
+                <!-- Article image will be displayed here -->
+            </div>
             <div class="modal-content-text">
                 <!-- Article content will be displayed here -->
             </div>
@@ -656,6 +670,8 @@
 
     <div id="admin-notification" class="notification"></div>
 
+    
+
     <footer>
         <p>&copy; 2025 Awsworth Villa FC. All rights reserved.</p>
         <p>Website designed by Njoh Mtanase</p>
@@ -672,8 +688,20 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
-    <script src="auth.js"></script>
-    <script src="admin.js"></script>
+   <!-- Core scripts -->
+<script src="script.js"></script>
+<script src="auth.js"></script>
+
+<!-- Admin modular scripts -->
+<script src="admin-core.js"></script>
+<script src="admin-main.js"></script>
+<script src="admin-dashboard.js"></script>
+<script src="admin-news.js"></script>
+<script src="admin-player.js"></script>
+<script src="admin-matches.js"></script>
+<script src="admin-users.js"></script>
+<script src="admin-settings.js"></script>
+<script src="admin-fixes.js"></script>
+<script src="admin-form-fix.js"></script>
 </body>
 </html>
